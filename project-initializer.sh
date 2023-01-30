@@ -1,5 +1,9 @@
 #! /bin/bash
 name=$1
+if [ -z $name]; then
+	echo "Introduce a name for the project"
+	exit
+fi
 mkdir src
 mkdir inc
 touch Makefile
@@ -9,14 +13,15 @@ echo 'SRCS = '"$1"'.cpp
 SRDIR = src/
 NAME = '"$1"'
 DSRC = $(addprefix $(SRDIR), $(SRCS))
-OBJS = $(DSRC:.c=.o)
+ALLC = $(DSRC)
+OBJS = $(DSRC:.cpp=.o)
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -Iinc
 RM = rm -rf
 
 all: $(NAME)
 
-$(OBJS) : $(DSRC)
+$(OBJS) : $(ALLC)
 	$(CC) $(CFLAGS) -c $< -o $@
 $(NAME) : $(OBJS)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
