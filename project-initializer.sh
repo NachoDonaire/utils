@@ -4,6 +4,8 @@ if [ -z $name ]; then
 	echo "Introduce a name for the project"
 	exit
 fi
+mkdir $name
+cd $name
 mkdir src
 mkdir inc
 touch Makefile
@@ -45,3 +47,6 @@ int	main(int arg, char **args)
 }' > src/"$1".cpp
 echo '#include "iostream"
 #include "unistd.h"' > inc/"$1".hpp
+
+git init
+git branch -m master
