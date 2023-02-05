@@ -1,6 +1,6 @@
 #! /bin/bash
 name=$1
-if [ -z $name]; then
+if [ -z $name ]; then
 	echo "Introduce a name for the project"
 	exit
 fi
