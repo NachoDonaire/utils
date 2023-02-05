@@ -49,4 +49,4 @@ echo '#include "iostream"
 #include "unistd.h"' > inc/"$1".hpp
 
 git init
-git branch -m master
+#git branch -m master
