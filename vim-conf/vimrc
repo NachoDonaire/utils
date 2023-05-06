@@ -1,0 +1,29 @@
+" instalación de vundle
+set nocompatible
+set mouse=a
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'Vundle/Vundle.vim'
+Plugin 'vim-scripts/taglist.vim'
+" instalación del plugin ctrlp
+Plugin 'ctrlp.vim'
+
+call vundle#end()
+filetype plugin indent on
+
+set number " muestra los números de línea
+syntax on " activa la sintaxis del lenguaje en uso
+
+" Colorscheme 
+syntax enable
+set background=dark
+colorscheme murphy
+
+" configuración de ctrlp
+let g:ctrlp_working_path_mode = 'ra' " busca en el directorio actual y en sus subdirectorios
+let g:ctrlp_custom_ignore = {
+    \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+    \ 'file': '\v\.(exe|so|dll)$',
+    \ } " ignora ciertos archivos y directorios

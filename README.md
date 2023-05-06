@@ -1,3 +1,3 @@
-# Utils
+# UTILS
 
-This is a repository for utils. Go into the directory you want to get more information.
+There is some util files, go to the directory you want to see further information.
