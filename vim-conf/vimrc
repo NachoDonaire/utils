@@ -34,3 +34,68 @@ let g:ctrlp_custom_ignore = {
 set completeopt+=menuone
 let g:mucomplete#enable_auto_at_startup = 1
 
+"Funcion creadora de clases
+function! CreateCppClass(className)
+  let l:header = [
+        \ '#ifndef ' . toupper(a:className) . '_HPP',
+        \ '#define ' . toupper(a:className) . '_HPP',
+        \ '',
+        \ '',
+        \ 'class ' . a:className,
+        \ '{',
+        \ ' 	public:',
+        \ '    		' . a:className . '();',
+        \ '    		' . a:className . '(const ' . a:className . ' &f);',
+        \ '    		~' . a:className . '();',
+        \ '    		' . a:className . '& operator=(const ' . a:className . ' &f);',
+        \ '};',
+        \ '',
+        \ '#endif'
+        \ ]
+
+  call writefile(l:header, a:className . '.hpp')
+
+  echo 'Class ' . a:className . ' created successfully!'
+endfunction
+
+command! -nargs=1 CreateCppClass call CreateCppClass(<f-args>)
+
+
+
+
+function! DefineCppClass(className)
+  let l:cppFile = a:className . '.cpp'
+  let l:headerFile = '<' . a:className . '.hpp>'
+  let l:classContent = [
+        \ '#include ' . l:headerFile,
+        \ '',
+        \ a:className . '::' . a:className . '()',
+        \ '{',
+        \ '        std::cout << "' . a:className . ' constructor called" << std::endl;',
+        \ '        this->type = "";',
+        \ '}',
+        \ '',
+        \ a:className . '::' . a:className . '(const ' . a:className . ' &a)',
+        \ '{',
+        \ '        this->type = a.type;',
+        \ '}',
+        \ '',
+        \ a:className . '::~' . a:className . '()',
+        \ '{',
+        \ '        std::cout << "' . a:className . ' destructor called" << std::endl;',
+        \ '}',
+        \ '',
+        \ a:className . ' ' . a:className . '::operator=(const ' . a:className . ' &f)',
+        \ '{',
+        \ '        if (this != &f)',
+        \ '        {',
+        \ '                this->type = f.type;',
+        \ '        }',
+        \ '        return *this;',
+        \ '}'
+        \ ]
+  call writefile(l:classContent, l:cppFile)
+  echo 'File ' . l:cppFile . ' successfully created!'
+endfunction
+
+command! -nargs=1 DefineCppClass call DefineCppClass(<f-args>)
