@@ -1,6 +1,6 @@
-SRCS = main.cpp ScalarConverter.cpp
+SRCS = main.cpp BitcoinExchange.cpp
 SRDIR = src/
-NAME = ex00
+NAME = btc 
 DSRC = $(addprefix $(SRDIR), $(SRCS))
 ALLC = $(DSRC)
 OBJS = $(DSRC:.cpp=.o)
@@ -10,8 +10,8 @@ RM = rm -rf
 
 all: $(NAME)
 
-##$(OBJS) : $(ALLC)
-##	$(CC) $(CFLAGS) -c $< -o $@
+#$(OBJS) : $(ALLC)
+#	$(CC) $(CFLAGS) -c $< -o $@
 $(NAME) : $(OBJS)
 	$(CC) $(CPPFLAGS) -o $(NAME) $(OBJS)
 
